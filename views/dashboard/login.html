@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学IT - 后台管理系统</title>
+    <?php include "/views/common/css.html"?>
+</head>
+<body>
+    <!-- 登录 -->
+    <div class="login">
+        <div class="login-wrap">
+            <div class="avatar">
+                <img src="./uploads/monkey.png" class="img-circle" alt="">
+            </div>
+            <form action="" class="col-xs-offset-1 col-xs-10">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                        <i class="fa fa-user"></i>
+                    </span>
+                    <input type="text" id = "tc_name"class="form-control" placeholder="用户名">
+                </div>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                        <i class="fa fa-key"></i>
+                    </span>
+                    <input type="password" id = "tc_pass" class="form-control" placeholder="密码">
+                </div>
+                <button type="submit" id = "loginBtn" class="btn btn-lg btn-primary btn-block">登 录</button>
+            </form>
+        </div>
+    </div>
+    <?php include "/views/common/js.html"?>
+    <script src="/views/public/assets/jquery-form/jquery.form.js"></script>
+
+<script>
+    var loginBtn = document.getElementById("loginBtn");
+    loginBtn.onclick = function () {
+        var name = document.getElementById("tc_name").value;
+        var pwd = document.getElementById("tc_pass").value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("post","http://api.botue.com/login");
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("tc_name=" +name + "&tc_pass=" + pwd );
+        xhr.onreadystatechange = function () {
+            if(xhr.status == 200 && xhr.readyState == 4){
+                console.log(xhr.responseText);
+            }
+        }
+        return false;
+    }
+
+
+
+
+</script>
+</body>
+</html>
