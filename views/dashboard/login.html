@@ -10,48 +10,67 @@
     <div class="login">
         <div class="login-wrap">
             <div class="avatar">
-                <img src="./uploads/monkey.png" class="img-circle" alt="">
+                <img src="/views/public/uploads/monkey.png" class="img-circle" alt="">
             </div>
-            <form action="" class="col-xs-offset-1 col-xs-10">
+            <form action="/api/login" method = "post" class="col-xs-offset-1 col-xs-10">
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon">
                         <i class="fa fa-user"></i>
                     </span>
-                    <input type="text" id = "tc_name"class="form-control" placeholder="用户名">
+                    <input type="text" name = "tc_name"class="form-control" placeholder="用户名">
                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon">
                         <i class="fa fa-key"></i>
                     </span>
-                    <input type="password" id = "tc_pass" class="form-control" placeholder="密码">
+                    <input type="password" name = "tc_pass" class="form-control" placeholder="密码">
                 </div>
-                <button type="submit" id = "loginBtn" class="btn btn-lg btn-primary btn-block">登 录</button>
+                <button type="submit" class="btn btn-lg btn-primary btn-block">登 录</button>
             </form>
         </div>
     </div>
-    <?php include "/views/common/js.html"?>
-    <script src="/views/public/assets/jquery-form/jquery.form.js"></script>
 
+    <script src="/views/public/js/lib/require.js"></script>
+    <script src="/views/public/js/lib/config.js"></script>
 <script>
-    var loginBtn = document.getElementById("loginBtn");
-    loginBtn.onclick = function () {
-        var name = document.getElementById("tc_name").value;
-        var pwd = document.getElementById("tc_pass").value;
-        var xhr = new XMLHttpRequest();
-        xhr.open("post","http://api.botue.com/login");
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send("tc_name=" +name + "&tc_pass=" + pwd );
-        xhr.onreadystatechange = function () {
-            if(xhr.status == 200 && xhr.readyState == 4){
-                console.log(xhr.responseText);
-            }
-        }
-        return false;
-    }
-
-
-
-
+    require(["js/dashboard/login"])
 </script>
+<!--//    //获取登录按钮-->
+<!--//    var loginBtn = document.getElementById("loginBtn");-->
+<!--//    loginBtn.onclick = function () {-->
+<!--//        //获取用户名和密码-->
+<!--//        var name = document.getElementById("tc_name").value;-->
+<!--//        var pwd = document.getElementById("tc_pass").value;-->
+<!--//        //发送请求-->
+<!--//        var xhr = new XMLHttpRequest();-->
+<!--//        xhr.open("post","/api/login");-->
+<!--//        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");-->
+<!--//        xhr.send("tc_name=" +name + "&tc_pass=" + pwd );-->
+<!--//        xhr.onreadystatechange = function () {-->
+<!--//            if(xhr.status == 200 && xhr.readyState == 4){-->
+<!--//                console.log(xhr.responseText);-->
+<!--//            }-->
+<!--//        }-->
+<!--//        return false;-->
+<!--//    }-->
+<!--//    $("#loginBtn").click(function () {-->
+<!--//        var name = $("#tc_name").val();-->
+<!--//        var pwd = $("#tc_pass").val();-->
+
+<!--//        $.ajax({-->
+<!--//            url:"/api/login" ,-->
+<!--//            type:"post",-->
+<!--//            data:$("form").serializeArray(),-->
+<!--//            success:function (data) {-->
+<!--//                if(data.code == 200){-->
+<!--//                    alert("登录成功")-->
+<!--//                }-->
+<!--//            }-->
+<!--//        })-->
+<!--//        return false;-->
+<!--//    })-->
+
+
+
 </body>
 </html>
